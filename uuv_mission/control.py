@@ -1,5 +1,5 @@
 # control.py
-class PDController:
+class controller:
     def __init__(self, KP=0.15, KD=0.6):
         # Initialize the proportional (KP) and derivative (KD) gains
         self.KP = KP
