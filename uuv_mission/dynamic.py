@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from .terrain import generate_reference_and_limits
 
@@ -76,7 +77,12 @@ class Mission:
     @classmethod
     def from_csv(cls, file_name: str):
         # You are required to implement this method
-        pass
+        df = pd.read_csv(file_name)
+        reference = df.iloc[:, 0].to_numpy()
+        cave_height = df.iloc[:, 1].to_numpy()
+        cave_depth = df.iloc[:, 2].to_numpy()
+        return cls(reference, cave_height, cave_depth)
+        
 
 
 class ClosedLoop:
@@ -105,3 +111,5 @@ class ClosedLoop:
     def simulate_with_random_disturbances(self, mission: Mission, variance: float = 0.5) -> Trajectory:
         disturbances = np.random.normal(0, variance, len(mission.reference))
         return self.simulate(mission, disturbances)
+
+
