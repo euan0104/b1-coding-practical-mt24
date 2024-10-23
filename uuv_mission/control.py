@@ -1,6 +1,6 @@
 # control.py
 class controller:
-    def __init__(self, KP=0.15, KD=0.6):
+    def __init__(self, KP=0.6, KD=0.45):
         # Initialize the proportional (KP) and derivative (KD) gains
         self.KP = KP
         self.KD = KD
